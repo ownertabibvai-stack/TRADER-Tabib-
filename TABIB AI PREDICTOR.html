@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIN GO PREMIUM PREDICTOR v4.0</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #1a1c29 0%, #0e1017 100%);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .hack-card {
+            background: linear-gradient(145deg, #181b2a, #111422);
+            border: 2px solid #2a2f4c;
+            border-radius: 24px;
+            padding: 35px 25px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 
+                        0 0 30px rgba(0, 255, 204, 0.05);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hack-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #00ffcc, #0077ff, #ff007f);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 255, 204, 0.1);
+            color: #00ffcc;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #6c7593;
+            margin-bottom: 30px;
+        }
+
+        .input-area {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #949cdf;
+            margin-bottom: 10px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #2a2f4c;
+            border-radius: 14px;
+            background: #0b0d16;
+            color: #fff;
+            font-size: 22px;
+            font-weight: 700;
+            outline: none;
+            text-align: center;
+            letter-spacing: 4px;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #00ffcc;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+            background: #0e111d;
+        }
+
+        input::placeholder {
+            color: #3f4566;
+            letter-spacing: 0px;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .predict-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(90deg, #00ffcc, #00b3ff);
+            color: #090b11;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0, 255, 204, 0.3);
+            transition: all 0.15s ease;
+        }
+
+        .predict-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 255, 204, 0.4);
+        }
+
+        .result-panel {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 16px;
+            background: #0b0d16;
+            border: 1px solid #1f233a;
+        }
+
+        .result-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #535b7c;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .signal-output {
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #3f4566;
+        }
+
+        .status-big {
+            color: #ff2a6d;
+            text-shadow: 0 0 20px rgba(255, 42, 109, 0.6);
+        }
+
+        .status-small {
+            color: #05d9e8;
+            text-shadow: 0 0 20px rgba(5, 217, 232, 0.6);
+        }
+
+        .status-error {
+            color: #ffaa00;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* সতর্কতা ডিজাইন */
+        .warning-box {
+            margin-top: 25px;
+            background: rgba(255, 170, 0, 0.04);
+            border: 1px dashed rgba(255, 170, 0, 0.25);
+            border-radius: 14px;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .warning-title {
+            color: #ffaa00;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .warning-box p {
+            color: #8c94b5;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .warning-box strong {
+            color: #ffaa00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hack-card">
+        <span class="badge">Server Connected</span>
+        <h2>WIN GO HACK</h2>
+        <p class="subtitle">Premium Prediction System</p>
+        
+        <div class="input-area">
+            <label class="input-label" for="periodInput">পিরিয়ড নম্বর লিখুন (00 - 99)</label>
+            <input type="text" id="periodInput" placeholder="এখানে লিখুন" maxlength="2" autocomplete="off">
+        </div>
+
+        <button class="predict-btn" onclick="generateSignal()">স্টার্ট প্রেডিকশন</button>
+
+        <div class="result-panel">
+            <div class="result-title">LIVE SIGNAL</div>
+            <div id="signalOutput" class="signal-output">READY</div>
+        </div>
+
+        <div class="warning-box">
+            <div class="warning-title">⚠️ বিশেষ সতর্কবার্তা</div>
+            <p>এটি কোনো ১০০% কার্যকারিতা হ্যাক নয়। এখানে অবশ্যই <strong>৬ স্টেপ মানি ম্যানেজমেন্ট (6-Step Money Management)</strong> প্ল্যান বজায় রাখলে ১০০% প্রফিট পাওয়া সম্ভব।</p>
+        </div>
+    </div>
+
+    <script>
+        const hackDatabase = {
+            "00": "Small", "01": "Small", "02": "Big", "03": "Small", "04": "Small",
+            "05": "Big", "06": "Small", "07": "Small", "08": "Big", "09": "Small",
+            "10": "Small", "11": "Small", "12": "Big", "13": "Small", "14": "Small",
+            "15": "Big", "16": "Small", "17": "Small", "18": "Small", "19": "Big",
+            "20": "Small", "21": "Big", "22": "Big", "23": "Small", "24": "Big",
+            "25": "Big", "26": "Small", "27": "Big", "28": "Small", "29": "Big",
+            "30": "Big", "31": "Big", "32": "Small", "33": "Big", "34": "Small",
+            "35": "Big", "36": "Small", "37": "Small", "38": "Big", "39": "Small",
+            "40": "Big", "41": "Big", "42": "Small", "43": "Big", "44": "Big",
+            "45": "Small", "46": "Small", "47": "Big", "48": "Small", "49": "Small",
+            "50": "Small", "51": "Small", "52": "Big", "53": "Small", "54": "Big",
+            "55": "Small", "56": "Big", "57": "Big", "58": "Small", "59": "Small",
+            "60": "Small", "61": "Big", "62": "Small", "63": "Small", "64": "Small",
+            "65": "Small", "66": "Big", "67": "Small", "68": "Small", "69": "Big",
+            "70": "Big", "71": "Big", "72": "Small", "73": "Big", "74": "Big",
+            "75": "Small", "76": "Big", "77": "Big", "78": "Big", "79": "Big",
+            "80": "Big", "81": "Big", "82": "Big", "83": "Big", "84": "Small",
+            "85": "Big", "86": "Small", "87": "Small", "88": "Big", "89": "Small",
+            "90": "Small", "91": "Small", "92": "Small", "93": "Small", "94": "Big",
+            "95": "Small", "96": "Small", "97": "Big", "98": "Small", "99": "Small"
+        };
+
+        function generateSignal() {
+            const inputField = document.getElementById("periodInput");
+            const outputDiv = document.getElementById("signalOutput");
+            let rawInput = inputField.value.trim();
+
+            if (rawInput === "") {
+                outputDiv.innerText = "নম্বর দিন!";
+                outputDiv.className = "signal-output status-error";
+                return;
+            }
+
+            if (rawInput.length === 1 && !isNaN(rawInput)) {
+                rawInput = "0" + rawInput;
+                inputField.value = rawInput;
+            }
+
+            if (hackDatabase.hasOwnProperty(rawInput)) {
+                const finalSignal = hackDatabase[rawInput];
+                outputDiv.innerText = finalSignal;
+                
+                if (finalSignal === "Big") {
+                    outputDiv.className = "signal-output status-big";
+                } else {
+                    outputDiv.className = "signal-output status-small";
+                }
+            } else {
+                outputDiv.innerText = "ভুল পিরিয়ড!";
+                outputDiv.className = "signal-output status-error";
+            }
+        }
+
+        document.getElementById("periodInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                generateSignal();
+            }
+        });
+    </script>
+</body>
+</html>
